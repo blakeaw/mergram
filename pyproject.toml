@@ -1,0 +1,23 @@
+[project]
+name = "mergram"
+version = "0.1.0"
+description = "Programmatically construct Mermaid diagrams and charts in Python"
+readme = "README.md"
+authors = [
+    { name = "Blake A. Wilson", email = "blakeaw1102@gmail.com" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[project.optional-dependencies]
+networkx = ["networkx"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
