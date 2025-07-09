@@ -199,6 +199,38 @@ class Flowchart:
 
         return
 
+    def to_markdown(self) -> str:
+        """
+        Convert the flowchart to a Markdown string with the flowchart in a mermaid code block.
+
+        Returns:
+            str: The Markdown representation of the flowchart.
+        """
+        markdown_str = f"```mermaid\n{str(self)}\n```\n"
+        return markdown_str
+
+    def to_html(self) -> str:
+        """
+        Convert the flowchart to an HTML string with mermaid.js scritp via ESM import.
+
+        Adated from: https://mermaid.js.org/config/usage.html
+
+        Returns:
+            str: The HTML representation of the flowchart.
+        """
+        html_str = f"""
+<html lang='en'>
+<body>
+<pre class=\"mermaid\">
+{str(self)}
+</pre>
+<script type=\"module\">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+</script>
+</body>
+</html>"""
+        return html_str
+
 
 class Subgraph(Flowchart):
     """

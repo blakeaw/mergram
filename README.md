@@ -18,6 +18,13 @@ MerGram currently supports constructing Mermaid flowcharts, with plans to expand
 - Export diagrams to Mermaid `.mmd` or `.mermaid` files
 - Optional integration with [networkx](https://networkx.org/) for graph conversion
 
+### What's New in 
+
+#### v0.2.0
+
+* `Flowchart.to_markdown` function to get a string representation of the flowchart embedded in a Markdown Mermaid code block.
+* `Flowchart.to_html` function to get a string representation of the flowchart embedded in HTML. 
+
 ## Installation
 
 ```bash
@@ -62,7 +69,7 @@ That looks like:
  title: Example Flowchart
 ---
 flowchart TB
-    A@{ shape: rect, label: Start, fill: #fff, stroke: #000, stroke-width: 2px }
+    A@{ shape: rect, label: Start, fill: #fff, stroke: #000, stroke-width: 4px }
     B@{ shape: circle, label: End, fill: #fff, stroke: #000, stroke-width: 2px }
     A-->|to end|B
 ```
