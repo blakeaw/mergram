@@ -74,7 +74,11 @@ class Flowchart:
         if not isinstance(node, Node):
             raise TypeError("node must be an instance of Node.")
         self._nodes.add(node)
-        style_attributes = {key: value for key, value in node.attributes.items() if key not in ["label", "shape"]}
+        style_attributes = {
+            key: value
+            for key, value in node.attributes.items()
+            if key not in ["label", "shape"]
+        }
         if style_attributes:
             style = Style(object_id=node.id, **style_attributes)
             self.add_style(style)
@@ -488,6 +492,7 @@ class Link:
         """
         return self.link
 
+
 class Style:
     """
     Represents a style for nodes in a flowchart.
@@ -517,7 +522,7 @@ class Style:
             dict: The style dictionary.
         """
         return str(self)
-    
+
     def __str__(self):
         """
         Return a string representation of the style in Mermaid syntax.
