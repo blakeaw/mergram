@@ -49,6 +49,7 @@ class Flowchart:
         self._nodes = set()
         self.edges = []
         self.subgraphs = {}
+        self.styles = []
 
     @property
     def nodes(self):
@@ -73,6 +74,10 @@ class Flowchart:
         if not isinstance(node, Node):
             raise TypeError("node must be an instance of Node.")
         self._nodes.add(node)
+        style_attributes = {key: value for key, value in node.attributes.items() if key not in ["label", "shape"]}
+        if style_attributes:
+            style = Style(object_id=node.id, **style_attributes)
+            self.add_style(style)
 
     def add_link(self, link: "Link"):
         """
@@ -102,6 +107,20 @@ class Flowchart:
             raise TypeError("subgraph must be an instance of Subgraph.")
         self.subgraphs[subgraph.title] = subgraph
 
+    def add_style(self, style: "Style"):
+        """
+        Add a style to the flowchart.
+
+        Args:
+            style (Style): The style to add.
+
+        Raises:
+            TypeError: If the argument is not a Style instance.
+        """
+        if not isinstance(style, Style):
+            raise TypeError("style must be an instance of Style.")
+        self.styles.append(style)
+
     def __iadd__(self, other):
         """
         Add a Node, Link, or Subgraph to the flowchart using the += operator.
@@ -121,8 +140,10 @@ class Flowchart:
             self.add_link(other)
         elif isinstance(other, Subgraph):
             self.add_subgraph(other)
+        elif isinstance(other, Style):
+            self.add_style(other)
         else:
-            raise TypeError("Can only add Node, Link, or Subgraph instances.")
+            raise TypeError("Can only add Node, Link, Subgraph, or Style instances.")
         return self
 
     def __str__(self):
@@ -142,6 +163,8 @@ class Flowchart:
             sg_str = str(subgraph)
             for line in sg_str.splitlines():
                 flowchart_str += f"    {line}\n"
+        for style in self.styles:
+            flowchart_str += f"    {style}\n"
         return flowchart_str
 
     def write(self, file_path: str):
@@ -336,6 +359,7 @@ class Node:
         fill: str = "#fff",
         stroke: str = "#000",
         stroke_width: str = "2px",
+        color: str = "#000",
     ):
         """
         Initialize a Node instance.
@@ -347,6 +371,7 @@ class Node:
             fill (str, optional): The fill color of the node. Defaults to "#fff".
             stroke (str, optional): The stroke color of the node. Defaults to "#000".
             stroke_width (str, optional): The stroke width of the node. Defaults to "2px".
+            color (str, optional): The text color of the node. Defaults to "#000".
 
         Raises:
             ValueError: If the shape is not valid.
@@ -361,6 +386,7 @@ class Node:
             "fill": fill,
             "stroke": stroke,
             "stroke-width": stroke_width,
+            "color": color,
         }
 
     def set_attribute(self, key: str, value: str):
@@ -398,7 +424,7 @@ class Node:
         Returns:
             str: The node string in Mermaid syntax.
         """
-        node_str = f"{self.id}@{{ shape: {self.attributes['shape']}, label: {self.attributes['label']}, fill: {self.attributes['fill']}, stroke: {self.attributes['stroke']}, stroke-width: {self.attributes['stroke-width']} }}"
+        node_str = f"{self.id}@{{ shape: {self.attributes['shape']}, label: {self.attributes['label']} }}"
         return node_str
 
 
@@ -461,3 +487,45 @@ class Link:
             str: The string representation in Mermaid syntax.
         """
         return self.link
+
+class Style:
+    """
+    Represents a style for nodes in a flowchart.
+
+    Attributes:
+        object_id (str): The unique identifier for the node or subgraph.
+        style (str): The style string in Mermaid syntax.
+    """
+
+    def __init__(self, object_id: str, **kwargs):
+        """
+        Initialize a Style instance.
+
+        Args:
+            object_id (str): The unique identifier for the node or subgraph.
+            style (dict): The style tags dictionary in Mermaid syntax.
+        """
+        self.object_id = object_id
+        self.style_args = kwargs
+
+    @property
+    def style(self) -> str:
+        """
+        Get the style dictionary.
+
+        Returns:
+            dict: The style dictionary.
+        """
+        return str(self)
+    
+    def __str__(self):
+        """
+        Return a string representation of the style in Mermaid syntax.
+
+        Returns:
+            str: The string representation in Mermaid syntax.
+        """
+        style_str = " ".join(f"{k}:{v}," for k, v in self.style_args.items())
+        style_str = f"style {self.object_id} {style_str.rstrip(',')}"
+
+        return style_str

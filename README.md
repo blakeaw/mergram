@@ -59,9 +59,11 @@ Generates the following mermaid diagram code:
     title: Example Flowchart
     ---
     flowchart TB
-        A@{ shape: rect, label: Start, fill: #fff, stroke: #000, stroke-width: 2px }
-        B@{ shape: circle, label: End, fill: #fff, stroke: #000, stroke-width: 2px }
+        A@{ shape: rect, label: Start }
+        B@{ shape: circle, label: End }
         A-->|to end|B
+        style A fill:#fff, stroke:#000, stroke-width:2px, color:#000
+        style B fill:#fff, stroke:#000, stroke-width:2px, color:#000
 
 That looks like: 
 ```mermaid
@@ -69,9 +71,11 @@ That looks like:
  title: Example Flowchart
 ---
 flowchart TB
-    A@{ shape: rect, label: Start, fill: #fff, stroke: #000, stroke-width: 4px }
-    B@{ shape: circle, label: End, fill: #fff, stroke: #000, stroke-width: 2px }
+    A@{ shape: rect, label: Start }
+    B@{ shape: circle, label: End }
     A-->|to end|B
+    style A fill:#fff, stroke:#000, stroke-width:2px, color:#000
+    style B fill:#fff, stroke:#000, stroke-width:2px, color:#000
 ```
 
 ### From NetworkX
@@ -91,20 +95,24 @@ print(fc)
     title: From NetworkX
     ---
     flowchart LR
-        A@{ shape: rect, label: A, fill: #fff, stroke: #000, stroke-width: 2px }
-        B@{ shape: rect, label: B, fill: #fff, stroke: #000, stroke-width: 2px }
+        B@{ shape: rect, label: B }
+        A@{ shape: rect, label: A }
         A-->|to B|B
         B-->|to A|A
+        style A fill:#fff, stroke:#000, stroke-width:2px, color:#000
+        style B fill:#fff, stroke:#000, stroke-width:2px, color:#000
 
 ```mermaid
 ---
  title: From NetworkX
 ---
 flowchart LR
-    A@{ shape: rect, label: A, fill: #fff, stroke: #000, stroke-width: 2px }
-    B@{ shape: rect, label: B, fill: #fff, stroke: #000, stroke-width: 2px }
+    B@{ shape: rect, label: B }
+    A@{ shape: rect, label: A }
     A-->|to B|B
     B-->|to A|A
+    style A fill:#fff, stroke:#000, stroke-width:2px, color:#000
+    style B fill:#fff, stroke:#000, stroke-width:2px, color:#000
 ```
 
 

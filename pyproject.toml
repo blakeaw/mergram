@@ -1,6 +1,6 @@
 [project]
 name = "mergram"
-version = "0.2.0"
+version = "0.3.0"
 description = "Programmatically construct Mermaid diagrams and charts in Python"
 readme = "README.md"
 authors = [
@@ -17,6 +17,11 @@ classifiers = [
 
 [project.optional-dependencies]
 networkx = ["networkx"]
+
+[project.urls]
+Repository = "https://github.com/blakeaw/mergram"
+Issues = "https://github.com/blakeaw/mergram/issues"
+Changelog = "https://github.com/blakeaw/mergram/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
