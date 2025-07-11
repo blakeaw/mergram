@@ -6,7 +6,9 @@
 ![Python version badge](https://img.shields.io/badge/python->=3.8-blue.svg)
 [![license](https://img.shields.io/github/license/blakeaw/mergram.svg)](LICENSE)
 [![release](https://img.shields.io/github/release/blakeaw/mergram.svg)](https://github.com/blakeaw/mergram/releases)
+![PyPI - Version](https://img.shields.io/pypi/v/mergram)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 
 MerGram currently supports constructing Mermaid flowcharts, with plans to expand support for additional diagram and chart types in future releases.
  
