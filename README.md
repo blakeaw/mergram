@@ -14,11 +14,16 @@ MerGram currently supports constructing Mermaid flowcharts, with plans to expand
 ## Features
 
 - Build Mermaid flowcharts using Python classes
-- Support for nodes, links, and subgraphs
+- Support for nodes, links, and subgraphs, and style assignments
 - Export diagrams to Mermaid `.mmd` or `.mermaid` files
 - Optional integration with [networkx](https://networkx.org/) for graph conversion
 
 ### What's New in 
+
+### v0.3.0
+
+* `Style` class that can be used to add `style ...` lines to flowcharts
+* Fixes to style-related outputs for nodes
 
 #### v0.2.0
 
