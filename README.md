@@ -1,6 +1,6 @@
 # MerGram
 
-**Programmatically generate [Mermaid](https://mermaid.jd.org) diagrams and charts using Python.**
+**Programmatically generate [Mermaid](https://mermaid.js.org) diagrams and charts using Python.**
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 ![Python version badge](https://img.shields.io/badge/python->=3.8-blue.svg)
